@@ -2,6 +2,18 @@
 
 import { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  type ChartOptions,
+} from "chart.js";
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export default function VentasPanel({ start, end }: { start?: string; end?: string }) {
   const [loading, setLoading] = useState(true);
@@ -44,7 +56,7 @@ export default function VentasPanel({ start, end }: { start?: string; end?: stri
     ],
   };
 
-  const options = {
+  const options: ChartOptions<"bar"> = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: { legend: { display: false } },
